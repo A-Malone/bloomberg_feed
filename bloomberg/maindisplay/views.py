@@ -1,4 +1,7 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.template import RequestContext, loader
+
 #used for json returns
 import json
 import datetime
@@ -26,7 +29,13 @@ def home(request,company_tag):
     #Connect to bloomberg API with company tag
     #Parse Data from twitter
     #AJAX? How to implement that? Separate view?
-    return HttpResponse ("Hello! This page will be used to display the graphs about %s" % company_tag)
+    #template = loader.get_template('results/show.html')
+    #context = RequestContext(request)
+
+    #tag = company_tag
+
+    return render(request, 'results/show.html', {'tag':company_tag})
+    #return HttpResponse ("Hello! This page will be used to display the graphs about %s" % company_tag)
 
 def getJSON(request, company_tag,last_call):
     #Data should be newer than last_call
