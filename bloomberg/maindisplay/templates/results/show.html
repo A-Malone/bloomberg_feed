@@ -1,0 +1,35 @@
+<div id="d3-graph"></div>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+{% load staticfiles %}
+<script type="text/javascript">
+    var name = '{{ tag }}';    
+</script>
+<script src="/maindisplay/static/js/graph.js"></script>
+
+<style>
+  body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+</style>
