@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-(function(d3, $) {
-=======
 (function(d3, $) {  
->>>>>>> origin/master
     
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
@@ -29,11 +25,6 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.close); });
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -74,12 +65,10 @@ d3.tsv("/maindisplay/static/data.tsv", function(error, data) {
       .attr("class", "line")
       .attr("d", line);
 });
-<<<<<<< HEAD
+
 })(window.d3, window.jQuery);
 
 
-
-=======
 */
 //Approach 2
 $.get(data_path, function(data){  
@@ -127,4 +116,3 @@ $.get(data_path, function(data){
 });
 
 })(window.d3, window.jQuery);
->>>>>>> origin/master
