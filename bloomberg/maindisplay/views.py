@@ -30,7 +30,7 @@ def getPreviousTradingDate():
         if tradedOn.weekday() not in [5, 6]:
             return tradedOn
 
-def getAllData():
+def getAllData(company_name):
     global sessionOptions  
 
     # Create a Session
@@ -54,7 +54,7 @@ def getAllData():
 
     refDataService = session.getService("//blp/refdata")
     request = refDataService.createRequest("IntradayBarRequest")
-    request.set("security", "AAPL US Equity")
+    request.set("security", "{} US Equity".format(company_name))
     request.set("eventType", "TRADE");    
     request.set("interval", 5);    
     request.set("startDateTime", startTime)
@@ -111,7 +111,7 @@ def home(request,company_tag):
 
     #tag = company_tag
 
-    return render(request, 'results/show.html', {'tag':company_tag, 'data':getAllData()})
+    return render(request, 'results/show.html', {'tag':company_tag, 'data':getAllData(company_tag)})
     #return HttpResponse ("Hello! This page will be used to display the graphs about %s" % company_tag)
 
 def getJSON(request, company_tag,last_call):
@@ -119,4 +119,4 @@ def getJSON(request, company_tag,last_call):
     #Send the company_tag to bloomberg api
     #return json response
 
-    return HttpResponse(getAllData(), content_type="application/json")
+    return HttpResponse(getAllData(company_tag), content_type="application/json")
