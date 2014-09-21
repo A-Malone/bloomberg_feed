@@ -6,7 +6,8 @@
 
 {% load staticfiles %}
 <script type="text/javascript">
-    var name = '{{ tag }}';    
+    var name = '{{ tag }}';
+    var data_path = '/' + '{{tag}}' + '/get/last_call=0';    
 </script>
 <script src="/maindisplay/static/js/graph.js"></script>
 
