@@ -9,7 +9,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     height = 500 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%d-%b-%y").parse;
-var parseFullDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%L").parse;
+var parseFullDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%L").parse;
 
 var x = d3.time.scale()
     .range([0, width]);
@@ -92,11 +92,21 @@ $.get(data_path, function(data){
   x.domain(d3.extent(data, function(d) { return d.date; }));
   y.domain(d3.extent(data, function(d) { return d.close; }));
 
+  //Random
+  svg.append('rect')
+      .attr('x',100)
+      .attr('y',0)
+      .attr('width',100)
+      .attr('height',"100%")
+      .attr('fill', 'green')
+      
+  //X-axis
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+  //Y-Axis
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
@@ -107,10 +117,13 @@ $.get(data_path, function(data){
       .style("text-anchor", "end")
       .text("Price ($)");
 
+  //Lines
   svg.append("path")
       .datum(data)
       .attr("class", "line")
-      .attr("d", line);      
+      .attr("d", line);
+
+
 });
 
 })(window.d3, window.jQuery);
